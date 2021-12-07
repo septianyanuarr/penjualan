@@ -1,18 +1,22 @@
-<form action="<?php echo base_url(); ?>barang/simpanbarang" class="formBarang" method="POST">
+<form action="<?php echo base_url(); ?>barang/updatebarang" class="formBarang" method="POST">
     <div class="form-group mb-3">
-        <input type="text" class="form-control" name="kodebarang" placeholder="Kode Barang">
+        <input type="text" readonly value="<?php echo $barang['kode_barang']; ?> " class="form-control" name="kodebarang" placeholder="Kode Barang">
     </div>
     <div class="form-group mb-3">
-        <input type="text" class="form-control" name="namabarang" placeholder="Nama Barang">
+        <input type="text" value="<?php echo $barang['nama_barang']; ?>" class=" form-control" name="namabarang" placeholder="Nama Barang">
     </div>
     <div class="form-group mb-3">
-        <input type="text" class=" form-control" name="ukuran" placeholder="Ukuran">
+        <input type="text" value="<?php echo $barang['ukuran']; ?>" class=" form-control" name="ukuran" placeholder="Ukuran">
     </div>
     <div class="form-group mb-3">
         <select name="satuan" class="form-select">
             <option value="">Satuan</option>
-            <option value="Pcs">Pcs</option>
-            <option value="Lusin">Lusin</option>
+            <option <?php if ($barang['satuan'] == "Pcs") {
+                        echo "selected";
+                    } ?> value="Pcs">Pcs</option>
+            <option <?php if ($barang['satuan'] == "Lusin") {
+                        echo "selected";
+                    } ?> value="Lusin">Lusin</option>
         </select>
     </div>
     <div class="mb-3">
@@ -22,7 +26,7 @@
                 <line x1="10" y1="14" x2="21" y2="3" />
                 <path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5" />
             </svg>
-            Simpan
+            Update
         </button>
     </div>
 </form>

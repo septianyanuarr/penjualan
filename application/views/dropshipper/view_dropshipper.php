@@ -1,12 +1,12 @@
 <h2 class="page-title">
-    Data Barang
+    Data Dropshipper
 </h2>
 
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <a href="#" class="btn btn-success mb-3" id="tambahbarang">
+                <a href="#" class="btn btn-success mb-3" id="tambahdropshipper">
                     <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -16,41 +16,43 @@
                     Tambah Data
                 </a>
                 <div class="mb-3 col-md-5"><?php echo $this->session->flashdata('msg'); ?></div>
-                <table class="table table-striped table-bordered" id="tabelbarang">
+                <table class="table table-striped table-bordered" id="tabeldropshipper">
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>KODE BARANG</th>
-                            <th>NAMA BARANG</th>
-                            <th>Ukuran</th>
-                            <th>SATUAN</th>
+                            <th>NAMA DROPSHIPPER</th>
+                            <th>KODE DROPSHIPPER</th>
+                            <th>ALAMAT</th>
+                            <th>NO TELEPON</th>
                             <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
-                        foreach ($barang as $b) {
+                        foreach ($dropshipper as $d) {
                         ?>
                             <tr>
                                 <td> <?php echo $no; ?></td>
-                                <td> <?php echo $b->kode_barang; ?></td>
-                                <td> <?php echo $b->nama_barang; ?></td>
-                                <td> <?php echo $b->ukuran; ?></td>
-                                <td> <?php echo $b->satuan; ?></td>
+                                <td> <?php echo $d->nama_dropshipper; ?></td>
+                                <td> <?php echo $d->kode_dropshipper; ?></td>
+                                <td> <?php echo $d->alamat_dropshipper; ?></td>
+                                <td> <?php echo $d->telepon; ?></td>
                                 <td>
-                                    <a href="#" data-kodebarang="<?php echo $b->kode_barang; ?>" class="btn btn-sm btn-primary edit">
+                                    <a href="#" data-kodedropshipper="<?php echo $d->kode_dropshipper; ?>" class="btn btn-sm btn-primary edit">
                                         <li class="far fa-edit"></li>
 
                                     </a>
-                                    <a href="#" data-href="<?php echo base_url(); ?>barang/hapusbarang/<?php echo $b->kode_barang; ?>" class="btn btn-sm btn-danger hapus">
+                                    <a href="#" data-href="<?php echo base_url(); ?>dropshipper/hapusdropshipper/<?php echo $d->kode_dropshipper; ?>" class="btn btn-sm btn-danger hapus">
                                         <li class="far fa-trash-alt"></li>
                                     </a>
                                 </td>
                             </tr>
                         <?php
                             $no++;
-                        } ?>
+                        }
+                        ?>
+
                     </tbody>
                 </table>
             </div>
@@ -58,33 +60,33 @@
     </div>
 </div>
 </div>
-<div class="modal modal-blur fade" id="modalbarang" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-blur fade" id="modaldropshipper" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Input Barang</h5>
+                <h5 class="modal-title">Input Dropshipper</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div id="loadforminputbarang"></div>
+                <div id="loadforminputdropshipper"></div>
             </div>
         </div>
     </div>
 </div>
-<div class="modal modal-blur fade" id="modaleditbarang" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-blur fade" id="modaleditdropshipper" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Barang</h5>
+                <h5 class="modal-title">Edit Dropshipper</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div id="loadformeditbarang"></div>
+                <div id="loadformeditdropshipper"></div>
             </div>
         </div>
     </div>
 </div>
-<div class="modal modal-blur fade" id="modalhapusbarang" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-blur fade" id="modalhapusdropshipper" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -97,7 +99,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link link-secondary mr-auto" data-dismiss="modal">Cancel</button>
-                <a href="#" id="hapusbarang" class="btn btn-danger">Yes, Delete</a>
+                <a href="#" id="hapusdropshipper" class="btn btn-danger">Yes, Delete</a>
                 </a>
             </div>
         </div>
@@ -106,23 +108,26 @@
 </div>
 </div>
 
+
+
+
 <script>
     $(function() {
-        $("#tambahbarang").click(function() {
-            $("#modalbarang").modal("show");
-            $("#loadforminputbarang").load("<?php echo base_url(); ?>barang/inputbarang");
+        $("#tambahdropshipper").click(function() {
+            $("#modaldropshipper").modal("show");
+            $("#loadforminputdropshipper").load("<?php echo base_url(); ?>dropshipper/inputdropshipper");
         });
         $(".edit").click(function() {
-            var kodebarang = $(this).attr("data-kodebarang");
-            $("#modaleditbarang").modal("show");
-            $("#loadformeditbarang").load("<?php echo base_url(); ?>barang/editbarang/" + kodebarang);
+            var kodedropshipper = $(this).attr("data-kodedropshipper");
+            $("#modaleditdropshipper").modal("show");
+            $("#loadformeditdropshipper").load("<?php echo base_url(); ?>dropshipper/editdropshipper/" + kodedropshipper); //controller dropshipper
         });
         $(".hapus").click(function() {
             var href = $(this).attr("data-href");
-            $("#modalhapusbarang").modal("show");
-            $("#hapusbarang").attr("href", href);
+            $("#modalhapusdropshipper").modal("show");
+            $("#hapusdropshipper").attr("href", href);
         });
-        $('#tabelbarang').DataTable();
+        $('#tabeldropshipper').DataTable();
 
     });
 </script>

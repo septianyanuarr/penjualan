@@ -1,20 +1,17 @@
-<form action="<?php echo base_url(); ?>barang/simpanbarang" class="formBarang" method="POST">
+<form action="<?php echo base_url(); ?>dropshipper/simpandropshipper" class="formDropshipper" method="POST">
     <div class="form-group mb-3">
-        <input type="text" class="form-control" name="kodebarang" placeholder="Kode Barang">
+        <input type="text" class="form-control" name="namadropshipper" placeholder="Nama Dropshipper">
     </div>
     <div class="form-group mb-3">
-        <input type="text" class="form-control" name="namabarang" placeholder="Nama Barang">
+        <input type="text" class="form-control" name="kodedropshipper" placeholder="Kode Dropshipper">
     </div>
     <div class="form-group mb-3">
-        <input type="text" class=" form-control" name="ukuran" placeholder="Ukuran">
+        <input type="text" class="form-control" name="alamatdropshipper" placeholder="Alamat Dropshipper">
     </div>
     <div class="form-group mb-3">
-        <select name="satuan" class="form-select">
-            <option value="">Satuan</option>
-            <option value="Pcs">Pcs</option>
-            <option value="Lusin">Lusin</option>
-        </select>
+        <input type="text" class="form-control" name="notelepon" placeholder="No Telepon">
     </div>
+
     <div class="mb-3">
         <button type="submit" class="btn btn-primary w-100">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -29,17 +26,9 @@
 
 <script>
     $(function() {
-        $('.formBarang').bootstrapValidator({
+        $('.formDropshipper').bootstrapValidator({
             fields: {
-                kodebarang: {
-                    message: 'Kode Tidak Valid !',
-                    validators: {
-                        notEmpty: {
-                            message: 'Kode Harus Diisi !'
-                        }
-                    }
-                },
-                namabarang: {
+                namadropshipper: {
                     message: 'Nama Tidak Valid !',
                     validators: {
                         notEmpty: {
@@ -47,19 +36,27 @@
                         }
                     }
                 },
-                ukuran: {
-                    message: 'Ukuran Tidak Valid !',
+                kodedropshipper: {
+                    message: 'Kode Tidak Valid !',
                     validators: {
                         notEmpty: {
-                            message: 'Ukuran Harus Diisi !'
+                            message: 'Kode Harus Diisi !'
                         }
                     }
                 },
-                satuan: {
-                    message: 'Satuan Tidak Valid !',
+                alamatdropshipper: {
+                    message: 'Alamat Tidak Valid !',
                     validators: {
                         notEmpty: {
-                            message: 'Satuan Harus Diisi !'
+                            message: 'Alamat Harus Diisi !'
+                        }
+                    }
+                },
+                notelepon: {
+                    message: 'No Telepon Tidak Valid !',
+                    validators: {
+                        notEmpty: {
+                            message: 'No Telepon Harus Diisi !'
                         }
                     }
                 },
